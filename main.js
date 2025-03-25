@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+// Содержимое для .editorconfig
 const editorConfigContent = `
 # EditorConfig помогает разработчикам поддерживать единый стиль кода
 # между разными редакторами и IDE. Документация: https://editorconfig.org
@@ -19,34 +20,36 @@ insert_final_newline = true # Добавлять пустую строку в к
 trim_trailing_whitespace = false # Не удалять пробелы в конце строк (важно для Markdown)
 `;
 
-const prettierJsConfigContent = `// Конфигурация Prettier
+// Содержимое для .prettierrc.js (CommonJS, совместимый с CRA)
+const prettierConfigContent = `// Конфиг Prettier для React-проекта
 // Документация: https://prettier.io/docs/en/options.html
 module.exports = {
-  printWidth: 80, // Максимальная длина строки перед переносом
-  tabWidth: 2, // Размер отступа в пробелах
-  useTabs: false, // false = пробелы, true = табы
-  semi: true, // Точки с запятой в конце выражений
-  singleQuote: true, // Одинарные кавычки вместо двойных
-  trailingComma: 'all', // Запятые после последнего элемента (в объектах/массивах)
-  bracketSpacing: true, // Пробелы между скобками и содержимым: { foo: bar }
-  arrowParens: 'always', // Всегда оборачивать аргументы стрелочных функций в скобки
-  endOfLine: 'lf', // Линукс-стиль переноса строк (\\n)
+  printWidth: 80,    // Макс. длина строки
+  tabWidth: 2,       // Отступ в пробелах
+  useTabs: false,    // Не использовать табы
+  semi: true,        // Точки с запятой
+  singleQuote: true, // Одинарные кавычки
+  trailingComma: 'all',     // Запятые в конце объектов/массивов
+  bracketSpacing: true,     // Пробелы в { foo: bar }
+  arrowParens: 'always',    // Скобки у стрелочных функций: (x) => x
+  endOfLine: 'lf',          // Перенос строк в стиле Unix
+  jsxSingleQuote: true,     // Одинарные кавычки в JSX
+  bracketSameLine: false,   // Тег ">" в JSX на новой строке
 };
 `;
 
 // Функция для создания файла
 function createConfigFile(filename, content) {
   const filePath = path.join(process.cwd(), filename);
-
   fs.writeFile(filePath, content.trim(), (err) => {
     if (err) {
-      console.error(`Ошибка при создании файла ${filename}:`, err);
+      console.error(`Ошибка при создании ${filename}:`, err); // Исправлено: обычные ``
     } else {
-      console.log(`Файл ${filename} успешно создан`);
+      console.log(`✓ ${filename} успешно создан`); // Исправлено: обычные ``
     }
   });
 }
 
 // Создаем файлы
 createConfigFile('.editorconfig', editorConfigContent);
-createConfigFile('.prettierrc.js', prettierJsConfigContent);
+createConfigFile('.prettierrc.js', prettierConfigContent);
