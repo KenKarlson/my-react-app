@@ -43,9 +43,9 @@ function createConfigFile(filename, content) {
   const filePath = path.join(process.cwd(), filename);
   fs.writeFile(filePath, content.trim(), (err) => {
     if (err) {
-      console.error(`Ошибка при создании ${filename}:`, err); // Исправлено: обычные ``
+      console.error(`Ошибка при создании ${filename}:`, err);
     } else {
-      console.log(`✓ ${filename} успешно создан`); // Исправлено: обычные ``
+      console.log(`✓ ${filename} успешно создан`);
     }
   });
 }
