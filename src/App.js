@@ -12,6 +12,7 @@ export const App = () => {
     <YearContext.Provider value={currentYear}>
       <div className='App'>
         <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
           <h1>Hello, World & welcome !</h1>
           <CurrentYear />
         </header>
